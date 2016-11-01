@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,12 +24,12 @@ public class EditWorkoutActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_workout);
+        setContentView(R.layout.activity_workout_overview);
 
         db = new MyDBHandler(this);
         exercises = new ArrayList<Exercise>();
         adapter = new CustomAdapter();
-        list = (ListView) findViewById(R.id.listView_editWorkout);
+        list = (ListView) findViewById(R.id.listView_displayWorkout);
 
         // Get intent extras
         String day = getIntent().getStringExtra("dayString");
