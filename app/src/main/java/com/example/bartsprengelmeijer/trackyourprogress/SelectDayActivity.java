@@ -1,55 +1,113 @@
 package com.example.bartsprengelmeijer.trackyourprogress;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class SelectDayActivity extends AppCompatActivity {
 
-    MyDBHandler db;
-    int id;
-    ListView weekList;
+    int weekNumber;
+    int programId;
+    String action;
+    ListView daysList;
+    View lastTouchedView;
+    //private static final String TAG = SelectDayActivity.class.getName();
     private static final String TAG = "logtag";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_day);
+
+        // Get the weeknumber and programid from the intent extras
+        weekNumber = getIntent().getIntExtra("weekNumber", 0);
+        programId = getIntent().getIntExtra("programId", 0);
+        action = getIntent().getStringExtra("action");
+        Log.i(TAG, "Weeknumber: " + weekNumber);
+
+        // Get the list of days
+        daysList = (ListView) findViewById(R.id.listView_basicList);
+
+        // Set toolbar and title with the selected week
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Week " + weekNumber);
         setSupportActionBar(toolbar);
 
-        db = new MyDBHandler(this);
-        id = (int) getIntent().getLongExtra("id", 0);
-        weekList = (ListView) findViewById(R.id.listView_weeks);
-        populateListView();
-    }
-
-    private void populateListView() {
-        // Get the number of weeks for the selected program
-        int numberOfWeeks = db.getNumberOfWeeks(id);
-
-        // Create array for the list items
-        String[] weekItems = new String[numberOfWeeks];
-
-        // Fill the array
-        for(int i = 1; i <= numberOfWeeks; i++) {
-            weekItems[i] = "Week " + i;
-        }
+        // Array with weekdays
+        String[] daysOfTheWeek = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
 
         // Build adapter
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                this,                       // Context for the activity
-                R.layout.weeklist_item,     // Layout to use (create)
-                weekItems);                 // Items to be displayed
+                this, R.layout.basic_list_item, daysOfTheWeek);
 
         // Configure the list view
-        ListView list = (ListView) findViewById(R.id.listView_weeks);
-        list.setAdapter(adapter);
+        daysList.setAdapter(adapter);
     }
 
+    // Start a the create workout activity
+    public void openListItem(View view) {
+        ListView lv = daysList;
+
+        // Listpostion
+        int position = lv.getPositionForView(view);
+
+        // Daynumber + 1 because the list starts at 0
+        int dayNumber = lv.getPositionForView(view) + 1;
+
+        // Get the text from the list item to set as title for the next activity
+        String dayString = lv.getItemAtPosition(position).toString();
+
+        // Logging to see if the values are set
+        Log.i(TAG, "Daynumber: " + dayNumber);
+        Log.i(TAG, "Weeknumber: " + weekNumber);
+
+        // Highlight/show the the selected list item
+        if(lastTouchedView != null) {
+            lastTouchedView.setBackgroundColor(Color.parseColor("#494949"));
+        }
+        view.setBackgroundColor(Color.parseColor("#828282"));
+        lastTouchedView = view;
+
+        Intent i;
+
+        Log.i(TAG, action);
+
+        // Check which activity is requested and start a new intent
+        switch(action){
+            case "view":
+                i = new Intent(this, ViewWorkoutActivity.class);
+                i.putExtra("dayNumber", dayNumber);
+                i.putExtra("dayString", dayString);
+                i.putExtra("programId", programId);
+                i.putExtra("weekNumber", weekNumber);
+                startActivity(i);
+                break;
+            case "edit":
+                i = new Intent(this, EditWorkoutActivity.class);
+                i.putExtra("dayNumber", dayNumber);
+                i.putExtra("dayString", dayString);
+                i.putExtra("programId", programId);
+                i.putExtra("weekNumber", weekNumber);
+                startActivity(i);
+                break;
+            case "create":
+                i = new Intent(this, CreateWorkoutActivity.class);
+                i.putExtra("dayNumber", dayNumber);
+                i.putExtra("dayString", dayString);
+                i.putExtra("programId", programId);
+                i.putExtra("weekNumber", weekNumber);
+                startActivity(i);
+                break;
+            default:
+                Toast.makeText(SelectDayActivity.this, "An error has occurred.", Toast.LENGTH_SHORT).show();
+                break;
+        }
+    }
 }

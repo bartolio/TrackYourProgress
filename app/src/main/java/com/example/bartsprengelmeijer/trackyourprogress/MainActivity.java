@@ -2,8 +2,6 @@ package com.example.bartsprengelmeijer.trackyourprogress;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -12,7 +10,7 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
 
-    MyDBHandler myDb;
+    MyDBHandler db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        myDb = new MyDBHandler(this);
+        db = new MyDBHandler(this);
     }
 
     @Override
@@ -31,21 +29,25 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    // Start a new intent for creating a new program.
-    public void createProgram(View view) {
-        Intent i = new Intent(this, CreateProgramActivity.class);
+    // Start a new intent for to view the existing programs.
+    public void viewProgram(View view) {
+        Intent i = new Intent(this, SelectProgramActivity.class);
+        i.putExtra("action", "view");
         startActivity(i);
     }
 
-    // Start a new intent for to view the existing programs.
-    public void viewProgram(View view) {
+
+    // Start a new intent for creating a new program.
+    public void createProgram(View view) {
         Intent i = new Intent(this, CreateProgramActivity.class);
+        i.putExtra("action", "create");
         startActivity(i);
     }
 
     // Start a new intent to edit existing programs.
     public void editProgram(View view) {
-        Intent i = new Intent(this, CreateProgramActivity.class);
+        Intent i = new Intent(this, SelectProgramActivity.class);
+        i.putExtra("action", "edit");
         startActivity(i);
     }
 

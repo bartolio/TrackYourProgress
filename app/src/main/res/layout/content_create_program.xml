@@ -52,20 +52,12 @@
         android:onClick="createProgram" />
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText_weeks"
-        android:layout_below="@+id/textView2"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/getNumberOfWeeks"
-        android:layout_below="@+id/button_createProgram"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/editText_weeks"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="38dp"
-        android:onClick="getNumberOfWeeks" />
+        android:layout_below="@+id/textView2" />
+
 </RelativeLayout>

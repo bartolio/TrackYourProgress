@@ -1,28 +1,22 @@
 package com.example.bartsprengelmeijer.trackyourprogress;
 
 import android.content.Intent;
-import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
-import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class SelectWeekActivity extends AppCompatActivity {
 
     MyDBHandler db;
-    int id;
+    int programId;
     ListView weekList;
+    View lastTouchedView;
+    String action;
     private static final String TAG = "logtag";
 
     @Override
@@ -30,17 +24,15 @@ public class SelectWeekActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_week);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Select a week");
         setSupportActionBar(toolbar);
 
         db = new MyDBHandler(this);
-        id = (int) getIntent().getLongExtra("id", 0);
-        weekList = (ListView) findViewById(R.id.listView_weeks);
-        populateListView();
-    }
+        programId = getIntent().getIntExtra("programId", 0);
+        weekList = (ListView) findViewById(R.id.listView_basicList);
+        action = getIntent().getStringExtra("action");
 
-    private void populateListView() {
-        // Get the number of weeks for the selected program
-        int numberOfWeeks = db.getNumberOfWeeks(id);
+        int numberOfWeeks = db.getNumberOfWeeks(programId);
 
         // Create array for the list items
         String[] weekItems = new String[numberOfWeeks];
@@ -48,29 +40,47 @@ public class SelectWeekActivity extends AppCompatActivity {
         // Fill the array
         for(int i = 0; i < numberOfWeeks; i++) {
             int x = i+1;
+            Log.i(TAG, "Weeknumner: " + x);
             weekItems[i] = "Week " + x;
         }
 
         // Build adapter
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 this,                       // Context for the activity
-                R.layout.weeklist_item,     // Layout to use (create)
+                R.layout.basic_list_item,     // Layout to use (create)
                 weekItems);                 // Items to be displayed
 
         // Configure the list view
-        ListView list = (ListView) findViewById(R.id.listView_weeks);
-        list.setAdapter(adapter);
+        weekList.setAdapter(adapter);
     }
 
-    public void goToDays(View view) {
+
+    // Start a new activity and send the weeknumber with it
+    public void openListItem(View view) {
 
         ListView lv = weekList;
-        int position = lv.getPositionForView(view);
 
-        Toast.makeText(SelectWeekActivity.this, "pos" +  position, Toast.LENGTH_LONG).show();
+        // Increment with 1 because the list starts at 0 and the week at 1
+        int weekNumber = lv.getPositionForView(view) + 1;
 
-//        Intent selectDayIntent = new Intent(this, SelectWeekActivity.class);
-//        selectDayIntent.putExtra("id", id);
-//        startActivity(selectDayIntent);
+        // Highlight/show the the selected list item
+        if(lastTouchedView != null) {
+            lastTouchedView.setBackgroundColor(Color.parseColor("#494949"));
+        }
+        view.setBackgroundColor(Color.parseColor("#828282"));
+        lastTouchedView = view;
+
+        // Log the intents extra data
+        Log.i(TAG, "INTENT EXTRA");
+        Log.i(TAG, "Program ID: " + programId);
+        Log.i(TAG, "Weeknumber: " + weekNumber);
+        Log.i(TAG, "Action: " + action);
+
+        // Start new intent and add extra data
+        Intent i = new Intent(this, SelectDayActivity.class);
+        i.putExtra("programId", programId);
+        i.putExtra("weekNumber", weekNumber);
+        i.putExtra("action", action);
+        startActivity(i);
     }
 }

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.bartsprengelmeijer.trackyourprogress.EditWorkoutActivity"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Exercise"
+            android:id="@+id/textView_editExercise"
+            android:padding="10dp"
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:width="140dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Sets"
+            android:id="@+id/textView_editSets"
+            android:padding="10dp"
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:width="60dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Reps"
+            android:id="@+id/textView_editReps"
+            android:padding="10dp"
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:width="80dp" />
+
+        <TextView
+            android:layout_width="97dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Weight"
+            android:id="@+id/textView_editWeight"
+            android:layout_marginEnd="46dp"
+            android:padding="10dp"
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:width="200dp" />
+    </LinearLayout>
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/listView_editWorkout" />
+</LinearLayout>

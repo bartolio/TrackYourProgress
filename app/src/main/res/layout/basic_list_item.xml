@@ -4,8 +4,9 @@
     android:text="Test"
     android:textStyle="bold"
     android:padding="15dp"
-    android:background="#1a2a63"
+    android:background="#494949"
     android:textColor="#FFF"
-    android:onClick="goToDays">
+    android:onClick="openListItem"
+    android:id="@+id/textView_basicText">
 
 </TextView>

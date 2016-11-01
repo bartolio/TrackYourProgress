@@ -21,6 +21,6 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_select_day" />
+    <include layout="@layout/basic_list" />
 
 </android.support.design.widget.CoordinatorLayout>

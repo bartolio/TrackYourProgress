@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:background="#707070">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Deadlift"
+        android:id="@+id/workoutItemExercise"
+        android:paddingLeft="10dp"
+        android:width="130dp"
+        android:textStyle="bold"
+        android:textColor="#000"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="6"
+        android:id="@+id/workoutItemSets"
+        android:paddingLeft="10dp"
+        android:width="60dp"
+        android:textStyle="bold"
+        android:textColor="#000"
+        android:layout_alignTop="@+id/workoutItemExercise"
+        android:layout_toEndOf="@+id/workoutItemExercise" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="5"
+        android:id="@+id/workoutItemReps"
+        android:paddingLeft="10dp"
+        android:width="60dp"
+        android:textStyle="bold"
+        android:textColor="#000"
+        android:layout_alignTop="@+id/workoutItemExercise"
+        android:layout_toEndOf="@+id/workoutItemSets" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="250"
+        android:id="@+id/workoutItemWeight"
+        android:paddingLeft="10dp"
+        android:width="60dp"
+        android:textStyle="bold"
+        android:textColor="#000"
+        android:layout_alignTop="@+id/workoutItemExercise"
+        android:layout_toEndOf="@+id/workoutItemReps" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/deleteExerciseFromWorkout"
+        android:src="@android:drawable/ic_delete"
+        android:layout_gravity="right"
+        android:clickable="true"
+        android:onClick="removeExerciseFromWorkout"
+        android:layout_alignTop="@+id/workoutItemWeight"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>

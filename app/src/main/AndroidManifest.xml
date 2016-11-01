@@ -29,7 +29,11 @@
         <activity
             android:name=".SelectDayActivity"
             android:label="@string/title_activity_select_day"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".CreateWorkoutActivity" />
+        <activity android:name=".SelectProgramActivity" />
+        <activity android:name=".EditWorkoutActivity" />
+        <activity android:name=".ViewWorkoutActivity"></activity>
     </application>
 
 </manifest>
