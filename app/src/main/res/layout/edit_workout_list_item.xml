@@ -16,6 +16,8 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
         android:id="@+id/editText_editSets"
         android:width="60dp"
         android:layout_marginRight="10dp"
@@ -24,6 +26,8 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:ems="10"
         android:id="@+id/editText_editReps"
         android:width="60dp"
         android:layout_marginRight="10dp"
@@ -32,6 +36,8 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
         android:id="@+id/editText_editWeight"
         android:width="70dp"
         android:textStyle="bold" />

@@ -1,9 +1,14 @@
 package com.example.bartsprengelmeijer.trackyourprogress;
 
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,6 +16,7 @@ import android.view.MenuItem;
 public class MainActivity extends AppCompatActivity {
 
     MyDBHandler db;
+    private static final String TAG = "logtag";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +55,20 @@ public class MainActivity extends AppCompatActivity {
         Intent i = new Intent(this, SelectProgramActivity.class);
         i.putExtra("action", "edit");
         startActivity(i);
+    }
+
+    public static void printNamesToLogCat(Context context) {
+        Uri uri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+        String[] projection = { MediaStore.Video.VideoColumns.DATA };
+        Cursor c = context.getContentResolver().query(uri, projection, null, null, null);
+        int vidsCount = 0;
+        if (c != null) {
+            vidsCount = c.getCount();
+            while (c.moveToNext()) {
+                Log.d(TAG, c.getString(0));
+            }
+            c.close();
+        }
     }
 
     @Override
