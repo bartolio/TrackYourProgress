@@ -2,8 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:onClick="printNamesToLogCat">
+    android:layout_height="match_parent">
 
     <TextView
         android:layout_width="wrap_content"
@@ -142,7 +141,8 @@
                 android:id="@+id/imageView"
                 android:src="@drawable/play"
                 android:layout_gravity="center_horizontal"
-                android:padding="15dp" />
+                android:padding="15dp"
+                android:onClick="showVideoFiles" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -162,10 +162,11 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/imageView2"
+                android:id="@+id/imageView232"
                 android:src="@drawable/camera"
                 android:layout_gravity="center_horizontal"
-                android:padding="15dp" />
+                android:padding="15dp"
+                android:onClick="recordVideo" />
 
             <TextView
                 android:layout_width="wrap_content"

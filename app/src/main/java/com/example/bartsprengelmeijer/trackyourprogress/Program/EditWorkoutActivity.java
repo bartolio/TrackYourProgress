@@ -1,4 +1,4 @@
-package com.example.bartsprengelmeijer.trackyourprogress;
+package com.example.bartsprengelmeijer.trackyourprogress.Program;
 
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
@@ -8,14 +8,15 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import com.example.bartsprengelmeijer.trackyourprogress.Main.Exercise;
+import com.example.bartsprengelmeijer.trackyourprogress.Main.MyDBHandler;
+import com.example.bartsprengelmeijer.trackyourprogress.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ViewWorkoutActivity extends AppCompatActivity {
+public class EditWorkoutActivity extends AppCompatActivity {
 
     int dayNumber, weekNumber, programId;
     List<Exercise> exercises;
@@ -66,7 +67,7 @@ public class ViewWorkoutActivity extends AppCompatActivity {
     // Custom ArrayAdapter to update the listview for the workout details
     private class CustomAdapter extends ArrayAdapter<Exercise> {
         public CustomAdapter() {
-            super(ViewWorkoutActivity.this, R.layout.view_workout_list_item, exercises);
+            super(EditWorkoutActivity.this, R.layout.edit_workout_list_item, exercises);
         }
 
         @Override
@@ -75,27 +76,27 @@ public class ViewWorkoutActivity extends AppCompatActivity {
             // Make sure we have a view to work with
             View itemView = convertView;
             if(itemView == null) {
-                itemView = getLayoutInflater().inflate(R.layout.view_workout_list_item, parent, false);
+                itemView = getLayoutInflater().inflate(R.layout.edit_workout_list_item, parent, false);
             }
 
             // Find the exercise to work with
             Exercise currentExercise = exercises.get(position);
 
             // Set the exercise view
-            TextView displayExercise = (TextView) itemView.findViewById(R.id.textView_displayExercise);
-            displayExercise.setText(currentExercise.getExercise());
+            EditText editExercise = (EditText) itemView.findViewById(R.id.editText_editExercise);
+            editExercise.setText(currentExercise.getExercise());
 
             // Set the sets view
-            TextView displaySets = (TextView) itemView.findViewById(R.id.textView_displaySets);
-            displaySets.setText(String.valueOf(currentExercise.getSets()));
+            EditText editSets = (EditText) itemView.findViewById(R.id.editText_editSets);
+            editSets.setText(String.valueOf(currentExercise.getSets()));
 
             // Set the reps view
-            TextView displayReps = (TextView) itemView.findViewById(R.id.textView_displayReps);
-            displayReps.setText(String.valueOf(currentExercise.getReps()));
+            EditText editReps = (EditText) itemView.findViewById(R.id.editText_editReps);
+            editReps.setText(String.valueOf(currentExercise.getReps()));
 
             // Set the weight view
-            TextView displayWeight = (TextView) itemView.findViewById(R.id.textView_displayWeight);
-            displayWeight.setText(String.valueOf(currentExercise.getWeight()));
+            EditText editWeight = (EditText) itemView.findViewById(R.id.editText_editWeight);
+            editWeight.setText(String.valueOf(currentExercise.getWeight()));
 
             return itemView;
         }

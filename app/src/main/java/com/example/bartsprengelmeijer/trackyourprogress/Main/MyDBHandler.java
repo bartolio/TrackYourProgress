@@ -1,4 +1,4 @@
-package com.example.bartsprengelmeijer.trackyourprogress;
+package com.example.bartsprengelmeijer.trackyourprogress.Main;
 
 import android.content.ContentValues;
 import android.content.Context;

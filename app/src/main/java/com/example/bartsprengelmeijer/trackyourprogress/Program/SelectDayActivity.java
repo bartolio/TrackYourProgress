@@ -1,4 +1,4 @@
-package com.example.bartsprengelmeijer.trackyourprogress;
+package com.example.bartsprengelmeijer.trackyourprogress.Program;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -10,6 +10,9 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.example.bartsprengelmeijer.trackyourprogress.Main.Program;
+import com.example.bartsprengelmeijer.trackyourprogress.R;
 
 public class SelectDayActivity extends AppCompatActivity {
 
@@ -75,39 +78,32 @@ public class SelectDayActivity extends AppCompatActivity {
         view.setBackgroundColor(Color.parseColor("#828282"));
         lastTouchedView = view;
 
-        Intent i;
-
         Log.i(TAG, action);
 
         // Check which activity is requested and start a new intent
         switch(action){
             case "view":
-                i = new Intent(this, ViewWorkoutActivity.class);
-                i.putExtra("dayNumber", dayNumber);
-                i.putExtra("dayString", dayString);
-                i.putExtra("programId", programId);
-                i.putExtra("weekNumber", weekNumber);
-                startActivity(i);
+                startIntent(ViewWorkoutActivity.class, dayNumber, dayString, programId, weekNumber);
                 break;
             case "edit":
-                i = new Intent(this, EditWorkoutActivity.class);
-                i.putExtra("dayNumber", dayNumber);
-                i.putExtra("dayString", dayString);
-                i.putExtra("programId", programId);
-                i.putExtra("weekNumber", weekNumber);
-                startActivity(i);
+                startIntent(EditWorkoutActivity.class, dayNumber, dayString, programId, weekNumber);
                 break;
             case "create":
-                i = new Intent(this, CreateWorkoutActivity.class);
-                i.putExtra("dayNumber", dayNumber);
-                i.putExtra("dayString", dayString);
-                i.putExtra("programId", programId);
-                i.putExtra("weekNumber", weekNumber);
-                startActivity(i);
+                startIntent(CreateWorkoutActivity.class, dayNumber, dayString, programId, weekNumber);
                 break;
             default:
                 Toast.makeText(SelectDayActivity.this, "An error has occurred.", Toast.LENGTH_SHORT).show();
                 break;
         }
+    }
+
+    // Start intent
+    public void startIntent(Class c, int dayNumber, String day, int programId, int weekNumber){
+        Intent i = new Intent(this, c);
+        i.putExtra("dayNumber", dayNumber);
+        i.putExtra("dayString", day);
+        i.putExtra("programId", programId);
+        i.putExtra("weekNumber", weekNumber);
+        startActivity(i);
     }
 }

@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.bartsprengelmeijer.trackyourprogress.EditWorkoutActivity"
+    tools:context=".Program.EditWorkoutActivity"
     android:weightSum="1">
 
     <LinearLayout

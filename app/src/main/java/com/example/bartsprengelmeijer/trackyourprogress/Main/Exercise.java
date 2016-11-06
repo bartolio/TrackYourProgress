@@ -1,4 +1,4 @@
-package com.example.bartsprengelmeijer.trackyourprogress;
+package com.example.bartsprengelmeijer.trackyourprogress.Main;
 
 public class Exercise {
 

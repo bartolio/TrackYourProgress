@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.bartsprengelmeijer.trackyourprogress">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera2" android:required="true" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".Main.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -19,21 +25,24 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CreateProgramActivity"
+            android:name=".Program.CreateProgramActivity"
             android:label="@string/title_activity_create_program"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".SelectWeekActivity"
+            android:name=".Program.SelectWeekActivity"
             android:label="@string/title_activity_select_week"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".SelectDayActivity"
+            android:name=".Program.SelectDayActivity"
             android:label="@string/title_activity_select_day"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".CreateWorkoutActivity" />
-        <activity android:name=".SelectProgramActivity" />
-        <activity android:name=".EditWorkoutActivity" />
-        <activity android:name=".ViewWorkoutActivity"></activity>
+        <activity android:name=".Program.CreateWorkoutActivity" />
+        <activity android:name=".Program.SelectProgramActivity" />
+        <activity android:name=".Program.EditWorkoutActivity" />
+        <activity android:name=".Program.ViewWorkoutActivity" />
+        <activity android:name=".Program.SelectVideoActivity" />
+        <activity android:name=".Video.PlayVideoActivity" />
+        <activity android:name=".Video.RecordVideoActivity"></activity>
     </application>
 
 </manifest>

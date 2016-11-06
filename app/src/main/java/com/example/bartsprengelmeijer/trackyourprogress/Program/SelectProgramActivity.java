@@ -1,4 +1,4 @@
-package com.example.bartsprengelmeijer.trackyourprogress;
+package com.example.bartsprengelmeijer.trackyourprogress.Program;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -11,6 +11,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.example.bartsprengelmeijer.trackyourprogress.Main.MyDBHandler;
+import com.example.bartsprengelmeijer.trackyourprogress.Main.Program;
+import com.example.bartsprengelmeijer.trackyourprogress.R;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,17 +1,21 @@
-package com.example.bartsprengelmeijer.trackyourprogress;
+package com.example.bartsprengelmeijer.trackyourprogress.Main;
 
-import android.content.Context;
-import android.content.Intent;
-import android.database.Cursor;
-import android.net.Uri;
-import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
+
+import android.Manifest;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.example.bartsprengelmeijer.trackyourprogress.Program.CreateProgramActivity;
+import com.example.bartsprengelmeijer.trackyourprogress.Program.SelectProgramActivity;
+import com.example.bartsprengelmeijer.trackyourprogress.Program.SelectVideoActivity;
+import com.example.bartsprengelmeijer.trackyourprogress.R;
+import com.example.bartsprengelmeijer.trackyourprogress.Video.RecordVideoActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,6 +30,14 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         db = new MyDBHandler(this);
+
+        // Request permission on runtime
+        ActivityCompat.requestPermissions(MainActivity.this,
+                new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.CAMERA,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.RECORD_AUDIO },
+                1);
     }
 
     @Override
@@ -57,18 +69,16 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    public static void printNamesToLogCat(Context context) {
-        Uri uri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
-        String[] projection = { MediaStore.Video.VideoColumns.DATA };
-        Cursor c = context.getContentResolver().query(uri, projection, null, null, null);
-        int vidsCount = 0;
-        if (c != null) {
-            vidsCount = c.getCount();
-            while (c.moveToNext()) {
-                Log.d(TAG, c.getString(0));
-            }
-            c.close();
-        }
+    // Start a new intent to edit existing programs.
+    public void showVideoFiles (View view) {
+        Intent i = new Intent(this, SelectVideoActivity.class);
+        startActivity(i);
+    }
+
+    // Start a new intent to edit existing programs.
+    public void recordVideo (View view) {
+        Intent i = new Intent(this, RecordVideoActivity.class);
+        startActivity(i);
     }
 
     @Override

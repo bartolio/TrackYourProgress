@@ -1,4 +1,4 @@
-package com.example.bartsprengelmeijer.trackyourprogress;
+package com.example.bartsprengelmeijer.trackyourprogress.Program;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -9,6 +9,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.example.bartsprengelmeijer.trackyourprogress.Main.MyDBHandler;
+import com.example.bartsprengelmeijer.trackyourprogress.R;
 
 public class SelectWeekActivity extends AppCompatActivity {
 
